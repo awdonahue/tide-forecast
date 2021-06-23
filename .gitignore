@@ -1,0 +1,7 @@
+env/
+.vscode/
+.env
+*.out
+
+__pycache__/
+*.lock
