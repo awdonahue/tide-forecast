@@ -7,8 +7,13 @@ from bs4.element import ResultSet
 import configs
 from utils import build_tide_urls
 
-def scrape_tides(location_urls: List[list]) -> List[ResultSet]:
-    """ Scrape data from tide web site: https://www.tide-forecast.com """
+def scrape_tides(location_urls: List[tuple]) -> List[ResultSet]:
+    """ Scrape data from tide web site: https://www.tide-forecast.com
+
+    :param location_urls: Full urls to tide forecast locations
+
+    :return: List of BeautifulSoup ResultSet
+    """
     results = []
     for url in location_urls:
         res = requests.get(url[0])
@@ -27,7 +32,6 @@ def build_tide_report(tide_results: List[ResultSet]) -> None:
     """ Parse ResultSet for tide data and build List of dictionaries for report
 
     :param tide_results: ResultSet from BeautifulSoup based on urls
-    :param add_moonlight: Add moonlight tide data
     """
     # Tables each have a cell for Sun/Moon times
 
